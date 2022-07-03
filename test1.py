@@ -1,39 +1,42 @@
 import datetime
-
-def v1():
-    for i in range(1, 11):
-        print(i, i * 0.621371192)
+from re import sub
 
 def v2(): # list comprehension
     [print(i, i * 0.621371192) for i in range(1, 11)]
-    m = [i * 0.621371192 for i in range(1, 11)]
-    print(m)
 
 def v3(): # lambda
-    m = list(map((lambda i: i * 0.621371192), range(1, 11)))
+    m = list(
+        map(
+            (lambda i: i * 0.621371192), range(1, 11)
+            )
+        )
     print(m)
     
 def multidim_list():
     medals = [
-        ["th", 3, 5, 2],
-        ["kr", 10, 12, 16],
-        ["jr", 20, 30, 40]
+        ["th", 1, 2, 3],
+        ["kr", 4, 5, 6],
+        ["jr", 7, 8, 9]
     ]
+    a = [[m[0], m[1], m[2], m[3], sum(m[1:])] for m in medals]
+    b = [m[0] for m in medals ]
+    c = list(map((lambda m: m * m), range(1,4)))
     
-    a = [sum(m[1:]) for m in medals]
-    print(a)
-    b = [[m[0], m[1], m[2], m[3], sum(m[1:])] for m in medals]
-    print(b)
+    z = zip(b, c)
+    y = {k:v for k,v in z}
+    print(y)
     
-
+    
+    
 def dict_demo():
-    t = [("sun", "red"), 
-         ("mon", "yellow"),
-         ("tue", "pink"),
-         ("wed", "green"),
-         ("thu", "orange"),
-         ("fri", "blue"),
-         ("sat", "purple"),
+    t = [
+        ("sun", "red"), 
+        ("mon", "yellow"),
+        ("tue", "pink"),
+        ("wed", "green"),
+        ("thu", "orange"),
+        ("fri", "blue"),
+        ("sat", "purple"),
         ]   
     d = {k.capitalize():v for k,v in t}
     print(d)
@@ -44,20 +47,22 @@ def dict_demo():
     print(weekday, weekcolour)
     
 def dict_demo1():
+    
     t1 = ["sun",
         "mon",
         "tue",
         "wed",
         "thu",
         "fri",
-        "sat"]   
+        "sat"]
+    
     t2 = [ "red", 
-          "yellow",
-          "pink",
-          "green",
-          "orange",
-          "blue",
-          "purple"]
+        "yellow",
+        "pink",
+        "green",
+        "orange",
+        "blue",
+        "purple"]
     
     z = zip(t1, t2)
     d = {k.capitalize():v for k,v in z}
@@ -95,4 +100,4 @@ def dict_demo2():
 # print(results)
 
 
-dict_demo2()
+multidim_list()
