@@ -1,15 +1,30 @@
 # Asynchronous I/O
 
-import asyncio
+import asyncio # การทำงานพร้อมกันทุกๆ function ไม่สนใจว่าตัวไหนจะเสร็จก่อน
 import test1
 import time
 
-class Test_asyn:
+class Test_asyn():
     def __init__(self):
         pass
-        # self.t1 = time.time()
-        # self.t2 = time.time() - self.t1
+        
     
+    def time(self):
+        hour = int(time.strftime("%H"))
+        minute = int(time.strftime("%M"))
+        second = int(time.strftime("%S"))
+        while (hour < 24):
+            while (minute < 59):
+                while (second < 59):
+                    second += 1
+                    time.sleep(1)
+                    print(str(hour) + ":" + str(minute) + ":" + str(second))
+
+                second = 0
+                minute += 1
+            minute = 0
+            hour += 1
+                
     def run_start(self):
         loop = asyncio.get_event_loop()
         loop.run_until_complete(self.main())
@@ -21,70 +36,58 @@ class Test_asyn:
         
     
     async def func1(self):
-        t1 = time.time()
-        t2 = time.time() - t1
         a = "v1"
-        t = 30
+        t = 1
         b = test1.v1()
         
         print(f'start_function ({a}): time {t} seconds...')
         await asyncio.sleep(t)
-        return f'{a} is completed in {t2:0.2f} seconds.'
+        return f'{a} is completed in {t1} seconds.'
     
     async def func2(self):
-        t1 = time.time()
-        t2 = time.time() - t1
         a = "v2"
-        t = 5
+        t = 2
         b = test1.v2()
         
         print(f'start_function ({a}): time {t} seconds...')
         await asyncio.sleep(t)
-        return f'{a} is completed in {t2:0.2f} seconds.'
+        return f'{a} is completed in {t1} seconds.'
     
     async def func3(self):
-        t1 = time.time()
-        t2 = time.time() - t1
         a = "v3"
-        t = 15
-        b = test1.v2()
+        t = 3
+        b = test1.v3()
         
         print(f'start_function ({a}): time {t} seconds...')
         await asyncio.sleep(t)
-        return f'{a} is completed in {t2:0.2f} seconds.'
+        return f'{a} is completed in {t1} seconds.'
     
     async def func4(self):
-        t1 = time.time()
-        t2 = time.time() - t1
         a = "v4"
-        t = 6
+        t = 4
         b = test1.v4()
         
         print(f'start_function ({a}): time {t} seconds...')
         await asyncio.sleep(t)
-        return f'{a} is completed in {t2:0.2f} seconds.'
+        return f'{a} is completed in {t1} seconds.'
     
     async def func5(self):
-        t1 = time.time()
-        t2 = time.time() - t1
         a = "v5"
-        t = 2
+        t = 5
         b = test1.v5()
         
         print(f'start_function ({a}): time {t} seconds...')
         await asyncio.sleep(t)
-        return f'{a} is completed in {t2:0.2f} seconds.'
+        return f'{a} is completed in {t1} seconds.'
     
     async def func6(self):
-        t1 = time.time()
-        t2 = time.time() - t1
         a = "v6"
-        t = 3
+        t = 6
         b = test1.v6()
         
         print(f'start_function ({a}): time {t} seconds...')
         await asyncio.sleep(t)
-        return f'{a} is completed in {t2:0.2f} seconds.'
+        return f'{a} is completed in {t1} seconds.'
     
     async def main(self):
         
@@ -134,8 +137,8 @@ class Test_asyn:
         
 if __name__ == '__main__':
     t1 = time.time()
-    # asyncio.run(app())
     app = Test_asyn()
+    # app.time()
     app.run_start()
     
     t2 = time.time() - t1
