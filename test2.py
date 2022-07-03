@@ -1,30 +1,107 @@
 # Asynchronous I/O
 
 import asyncio
-from asyncore import loop
+import test1
 import time
 
-
-class Test_asyncio:
+class Test_asyn:
     def __init__(self):
         pass
+        # self.t1 = time.time()
+        # self.t2 = time.time() - self.t1
     
     def run_start(self):
         loop = asyncio.get_event_loop()
         loop.run_until_complete(self.main())
+    
+    
+    async def function_test(self):
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(self.main())
         
-    async def cook(self, food, t):
-        print(f'Microwave ({food}): Cooking {t} seconds...')
+    
+    async def func1(self):
+        t1 = time.time()
+        t2 = time.time() - t1
+        a = "v1"
+        t = 30
+        b = test1.v1()
+        
+        print(f'start_function ({a}): time {t} seconds...')
         await asyncio.sleep(t)
-        print(f'Microwave ({food}): Finished cooking')
-        return f'{food} is completed'
+        return f'{a} is completed in {t2:0.2f} seconds.'
+    
+    async def func2(self):
+        t1 = time.time()
+        t2 = time.time() - t1
+        a = "v2"
+        t = 5
+        b = test1.v2()
+        
+        print(f'start_function ({a}): time {t} seconds...')
+        await asyncio.sleep(t)
+        return f'{a} is completed in {t2:0.2f} seconds.'
+    
+    async def func3(self):
+        t1 = time.time()
+        t2 = time.time() - t1
+        a = "v3"
+        t = 15
+        b = test1.v2()
+        
+        print(f'start_function ({a}): time {t} seconds...')
+        await asyncio.sleep(t)
+        return f'{a} is completed in {t2:0.2f} seconds.'
+    
+    async def func4(self):
+        t1 = time.time()
+        t2 = time.time() - t1
+        a = "v4"
+        t = 6
+        b = test1.v4()
+        
+        print(f'start_function ({a}): time {t} seconds...')
+        await asyncio.sleep(t)
+        return f'{a} is completed in {t2:0.2f} seconds.'
+    
+    async def func5(self):
+        t1 = time.time()
+        t2 = time.time() - t1
+        a = "v5"
+        t = 2
+        b = test1.v5()
+        
+        print(f'start_function ({a}): time {t} seconds...')
+        await asyncio.sleep(t)
+        return f'{a} is completed in {t2:0.2f} seconds.'
+    
+    async def func6(self):
+        t1 = time.time()
+        t2 = time.time() - t1
+        a = "v6"
+        t = 3
+        b = test1.v6()
+        
+        print(f'start_function ({a}): time {t} seconds...')
+        await asyncio.sleep(t)
+        return f'{a} is completed in {t2:0.2f} seconds.'
     
     async def main(self):
-        coros = [self.cook('Rice', 3), self.cook('Eggs', 10), self.cook('Milk', 1)]
+        
+        coros = [
+            asyncio.create_task(self.func1()), 
+            asyncio.create_task(self.func2()),
+            asyncio.create_task(self.func3()),
+            asyncio.create_task(self.func4()),
+            asyncio.create_task(self.func5()),
+            asyncio.create_task(self.func6()),
+            ]
+        
         results = await asyncio.wait(coros)
         print(f'Completed task: {len(results[0])}')
         [print(f"- {completed_task.result()}") for completed_task in results[0]]    
         print(f'Uncompleted task: {len(results[1])}')
+        
 
 # async def wash(basket):
 #     print(f'Washing Machine ({basket}): Put the coin')ud 0]
@@ -58,7 +135,7 @@ class Test_asyncio:
 if __name__ == '__main__':
     t1 = time.time()
     # asyncio.run(app())
-    app = Test_asyncio()
+    app = Test_asyn()
     app.run_start()
     
     t2 = time.time() - t1

@@ -1,10 +1,10 @@
 import datetime
 from re import sub
 
-def v2(): # list comprehension
+def v1(): # list comprehension
     [print(i, i * 0.621371192) for i in range(1, 11)]
 
-def v3(): # lambda
+def v2(): # lambda
     m = list(
         map(
             (lambda i: i * 0.621371192), range(1, 11)
@@ -12,7 +12,7 @@ def v3(): # lambda
         )
     print(m)
     
-def multidim_list():
+def v3():
     medals = [
         ["th", 1, 2, 3],
         ["kr", 4, 5, 6],
@@ -25,10 +25,9 @@ def multidim_list():
     z = zip(b, c)
     y = {k:v for k,v in z}
     print(y)
+
     
-    
-    
-def dict_demo():
+def v4():
     t = [
         ("sun", "red"), 
         ("mon", "yellow"),
@@ -46,7 +45,7 @@ def dict_demo():
     weekcolour = d[weekday]
     print(weekday, weekcolour)
     
-def dict_demo1():
+def v5():
     
     t1 = ["sun",
         "mon",
@@ -73,7 +72,7 @@ def dict_demo1():
     print(weekday, weekcolour)
 
 
-def dict_demo2():
+def v6():
     
     _s = [1, 2, 3, 4]
     _r = [5, 6, 7, 8]
@@ -98,6 +97,3 @@ def dict_demo2():
 # results = list(map(addition, num))
 # results = list(map(lambda x, y: x + y, num1, num2))
 # print(results)
-
-
-multidim_list()
