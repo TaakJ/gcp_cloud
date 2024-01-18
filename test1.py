@@ -1,5 +1,7 @@
+
 import datetime
-from re import sub
+import time
+import functools
 
 def v1(): # list comprehension
     [print(i, i * 0.621371192) for i in range(1, 11)]
@@ -164,4 +166,66 @@ def greet_two_people (name1, name2) :
     print(f'working on step => 1, {name1}, {name2}, From Normal Function')
     return name1, name2
 
-print(greet_two_people("tak", "tok"))
+
+
+def time_counter_decorator (func) :
+    def measure_time (*args,**kwargs) :
+        start_time = time.time()
+        print(start_time)
+        print(*args)
+        print(**kwargs)
+        result = func(*args,**kwargs)
+        elapsed = time.time() - start_time
+        print(func.__name__ , 'spend', elapsed , 'sec(s)')
+        
+        return result        
+
+    return measure_time
+
+@time_counter_decorator
+def adding_number (max_num) :
+    result = 0
+    for i in range(max_num):
+        result += i
+
+    return result
+
+
+def withParams(func):
+    return functools.partial(func,1,2)
+
+@withParams
+def myMethodA (param1, param2, specificParam):
+    print(param1,param2,specificParam)
+
+@withParams
+def myMethodB (param1, param2, specificParam1, specificParam2):
+    print(param1,param2,specificParam1, specificParam2)
+
+
+# myMethodA(10)
+# myMethodB(12,13)
+
+def withParams(func):
+    def wrapper(*args, **kwargs):
+        kwargs['param1'] 
+        kwargs['param2'] 
+        return func(*args, **kwargs)
+    return wrapper
+
+@withParams
+def add(specificparam, *args, **kwargs):
+    print(specificparam)  # 3
+    print(args)           # (4,)
+    print(kwargs)         # {'param2': 2, 'param1': 1}
+    return specificparam + sum(args) + sum(kwargs.values())
+
+
+def func1(x):
+    x = 10
+    def func2():
+        x = x + 2
+        
+    return func2
+
+print(func1(10))

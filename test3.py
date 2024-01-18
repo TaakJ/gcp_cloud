@@ -1,6 +1,7 @@
 from threading import Thread
 from test4 import Test_asyncio
 import time
+import json
 
 # instances method ต้องกำหนดตัวแปรให้หมดทั้ง 4 ตัว เวลาเรียกใช้งาน
 class students:
@@ -30,14 +31,12 @@ class students:
         t2 = time.time() - t1
         print(f'Executed in {t2:0.2f} seconds.')
 
-
-
 if __name__ == '__main__':
+    # s1 = students({'x':2,'y':100})
+    # s1.run()
     
-    args = {'x':50,'y':50}
-    
-    S = students(args)
-    a = S.run()
-    
-    
-    # print(students.kg_pound(50)) # เรียกผ่านตัว staticmethod 
+    null_test = {'object1': None,
+                'object2': None
+                }
+    test = json.dumps({k: v if v is not None else '' for k, v in null_test.items()})
+    print(test)

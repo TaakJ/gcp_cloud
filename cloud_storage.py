@@ -19,7 +19,7 @@ class storage_config(Thread):
         # path of service account
 
         file_path = f'D:\Document\Coding\Project\gcp_cloud'
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.join(file_path, 'tribal-datum-340202-3f47fae0ff51.json')
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.join(file_path, 'tribal-datum-340202-5cd28f25d66f.json')
 
     def run(self):
         self.bucket_name = 'tasks_bucket'
